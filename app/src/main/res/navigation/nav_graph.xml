@@ -1,0 +1,31 @@
+<!-- В res/navigation/nav_graph.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/taskListFragment">
+
+    <fragment
+        android:id="@+id/taskListFragment"
+        android:name="kz.narxoz.final_project.TaskListFragment"
+        android:label="Задачи"
+        tools:layout="@layout/fragment_task_list">
+
+        <action
+            android:id="@+id/action_taskListFragment_to_editTaskFragment"
+            app:destination="@id/editTaskFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editTaskFragment"
+        android:name="kz.narxoz.final_project.EditTaskFragment"
+        android:label="Новая задача"
+        tools:layout="@layout/fragment_edit_task">
+
+        <argument
+            android:name="taskId"
+            app:argType="long"
+            android:defaultValue="-1" />
+    </fragment>
+</navigation>

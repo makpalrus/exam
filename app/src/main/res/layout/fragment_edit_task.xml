@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Название задачи -->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Название задачи"
+            app:counterEnabled="true"
+            app:counterMaxLength="100"
+            app:errorEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:inputType="textCapSentences" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Описание -->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Описание">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:minHeight="100dp"
+                android:maxLines="10"
+                android:inputType="textMultiLine|textCapSentences" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Дата и время -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Дата и время"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/buttonDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Выбрать дату"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+            <Button
+                android:id="@+id/buttonTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Выбрать время"
+                android:enabled="false"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewDateTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Не установлено"
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:gravity="center" />
+
+        <!-- Категория -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Категория"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+        <!-- Переключатели -->
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchImportant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Важная задача"
+            android:textSize="14sp" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchReminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Напомнить мне"
+            android:textSize="14sp" />
+
+        <!-- Кнопки -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/buttonSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Сохранить"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_marginEnd="16dp" />
+
+            <Button
+                android:id="@+id/buttonDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Удалить"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

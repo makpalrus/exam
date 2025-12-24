@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:title="Мои задачи"
+            app:titleTextColor="@android:color/white" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabBackground="?attr/colorPrimary"
+            app:tabGravity="center"
+            app:tabIndicatorColor="@android:color/white"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@android:color/white"
+            app:tabTextColor="@android:color/white">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Все" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Сегодня" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Важные" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTasks"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="?attr/colorPrimary"
+        app:elevation="6dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/textViewEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Нет задач"
+        android:textSize="18sp"
+        android:textColor="?android:attr/textColorSecondary"
+        android:visibility="gone" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
