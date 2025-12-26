@@ -1,15 +1,14 @@
 package kz.narxoz.final_project
 
-
-
+import android.graphics.Paint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import kz.narxoz.final_project.databinding.ItemTaskBinding
 import kz.narxoz.final_project.db.TaskEntity
-
-
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -30,7 +29,8 @@ class TaskAdapter(
     inner class TaskViewHolder(private val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        private val dateFormat = SimpleDateFormat("dd.MM HH:mm", Locale.getDefault())
+        private val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+        private val dateOnlyFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
 
         fun bind(task: TaskEntity) {
             with(binding) {
@@ -38,13 +38,34 @@ class TaskAdapter(
                 textViewDescription.text = task.description
                 textViewDescription.visibility = if (task.description.isNullOrEmpty()) ViewGroup.GONE else ViewGroup.VISIBLE
 
-                textViewTime.text = task.dateTime?.let { dateFormat.format(it) } ?: ""
+                task.dateTime?.let {
+                    textViewTime.text = dateFormat.format(it)
+                    textViewDate.text = dateOnlyFormat.format(it)
+                    textViewTime.visibility = View.VISIBLE
+                    textViewDate.visibility = View.VISIBLE
+                } ?: run {
+                    textViewTime.visibility = View.GONE
+                    textViewDate.visibility = View.GONE
+                }
 
                 checkBoxCompleted.isChecked = task.isCompleted
-                textViewTitle.paint.isStrikeThruText = task.isCompleted
-                textViewDescription.paint.isStrikeThruText = task.isCompleted
 
-                // TODO: Установить цвет viewCategoryColor из categoryId (через ViewModel)
+                if (task.isCompleted) {
+                    textViewTitle.paintFlags = textViewTitle.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    textViewDescription.paintFlags = textViewDescription.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    root.alpha = 0.6f
+                } else {
+                    textViewTitle.paintFlags = textViewTitle.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                    textViewDescription.paintFlags = textViewDescription.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                    root.alpha = 1f
+                }
+
+                // TODO: Установить цвет категории
+                // viewCategoryColor.setBackgroundColor(Color.parseColor(categoryColor))
+
+                // TODO: Установить название категории
+                // textViewCategory.text = categoryName
+                // textViewCategory.visibility = if (categoryName.isNotEmpty()) View.VISIBLE else View.GONE
 
                 checkBoxCompleted.setOnClickListener { onCheckClick(task) }
                 root.setOnClickListener { onItemClick(task) }
